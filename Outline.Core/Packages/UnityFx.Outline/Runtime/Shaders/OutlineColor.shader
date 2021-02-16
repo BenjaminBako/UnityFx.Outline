@@ -9,7 +9,7 @@ Shader "Hidden/UnityFx/OutlineColor"
 
 		#include "UnityCG.cginc"
 
-		UNITY_DECLARE_TEX2D(_MainTex);
+		UNITY_DECLARE_SCREENSPACE_TEXTURE(_MainTex);
 		float _Cutoff;
 
 		v2f_img vert(appdata_img v)
@@ -34,7 +34,7 @@ Shader "Hidden/UnityFx/OutlineColor"
 		{
 			UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-			half4 c = UNITY_SAMPLE_TEX2D(_MainTex, i.uv);
+			half4 c = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_MainTex, i.uv);
 			clip(c.a - _Cutoff);
 			return 1;
 		}
